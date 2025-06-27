@@ -41,9 +41,9 @@ namespace MyFlipKart.BusinessLayer
             return user;
         }
 
-        public Task<List<UserListResponse>?> FetchUserList()
+        public Task<List<UserListResponse>?> FetchUserList(UserListRequest Request )
         {
-            return _user.FetchUserList();
+            return _user.FetchUserList(Request);
         }
 
     }

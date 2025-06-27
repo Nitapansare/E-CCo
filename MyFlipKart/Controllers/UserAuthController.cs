@@ -69,5 +69,25 @@ namespace MyFlipKart.Controllers
                 "LOGIN_SUCCESS"
             ));
         }
+
+        [HttpPost("fetch_userlist")]
+        public async Task<IActionResult> UserList(UserListRequest Request)
+        {
+            try
+            {
+                var response = await _userBL.FetchUserList(Request);
+                return Ok(ApiResponse<List<UserListResponse>>.Success(
+                    response
+                ));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+
+        }
+
     }
 }

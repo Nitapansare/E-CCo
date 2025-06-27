@@ -41,11 +41,13 @@ namespace MyFlipKart.RepositoryLayer
             return result != null ? true : false;
         }
 
-        public async Task<List<UserListResponse>?> FetchUserList()
+        public async Task<List<UserListResponse>?> FetchUserList(UserListRequest Request)
         {
             var parameters = new DynamicParameters();
-
-            string jsonResult = await _db.QueryFirstOrDefaultAsync<string>("dbo.GetUserList", null, commandType: CommandType.StoredProcedure);
+            parameters.Add("@PageNumber", Request.PageNumber);
+            parameters.Add("@FilterBy", Request.FilterBy);
+            parameters.Add("@FilterValue", Request.FilterValue);
+            string jsonResult = await _db.QueryFirstOrDefaultAsync<string>("dbo.GetUserList", parameters, commandType: CommandType.StoredProcedure);
 
             if (string.IsNullOrWhiteSpace(jsonResult))
                 return new List<UserListResponse>();
