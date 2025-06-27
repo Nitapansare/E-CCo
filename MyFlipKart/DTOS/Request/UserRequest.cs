@@ -16,6 +16,11 @@ namespace MyFlipKart.DTOS.Request
         public string Email_Id { get; set; }
         public string Password { get; set; }
     }
-    
+    public class UserListRequest
+    {
+        public int PageNumber  { get; set; }
+        public string? FilterBy { get; set; }
+        public string? FilterValue { get; set; }
+    }
 
 }
