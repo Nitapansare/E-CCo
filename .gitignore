@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/E-CCo/FileContentIndex
+/MyFlipKart/obj/Debug/net6.0/MyFlipKart.AssemblyInfo.cs
+/MyFlipKart/obj/Debug/net6.0/MyFlipKart.AssemblyInfoInputs.cache
+/MyFlipKart/obj/Debug/net6.0/MyFlipKart.assets.cache
+/MyFlipKart/obj/Debug/net6.0/MyFlipKart.GeneratedMSBuildEditorConfig.editorconfig
+/MyFlipKart/obj/Debug/net6.0/rpswa.dswa.cache.json
+/MyFlipKart/obj/MyFlipKart.csproj.nuget.dgspec.json
+/MyFlipKart/obj/project.assets.json
+/MyFlipKart/obj/project.nuget.cache
