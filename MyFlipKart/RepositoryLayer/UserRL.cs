@@ -55,7 +55,41 @@ namespace MyFlipKart.RepositoryLayer
             return JsonConvert.DeserializeObject<List<UserListResponse>>(jsonResult);
         }
 
-        
-       }
-    }
+        public async Task<UserListResponse> FetchUserDetealis(int id)
+        {
+            const string sql = @"Select * from dbo.tbl_User where UserId = @UserId";
 
+            var result = await _db.QueryFirstOrDefaultAsync(sql, new { UserId = id });
+            var resp = new UserListResponse();
+            if (result != null)
+            {
+                resp.Name = result.Name;
+                resp.Address = result.Address;
+                resp.phone = result.Phone;
+                resp.CreatedDate = result.CreatedDate;
+                resp.Email_Id = result.Email_Id;
+            }
+            return resp;
+        }
+
+        public async Task<UserListResponse?> DeleteUser(int id)
+        {
+            const string sql = @"
+        UPDATE tbl_User
+        SET IsDelete = 1
+        OUTPUT 
+            INSERTED.UserId,
+            INSERTED.Name,
+            INSERTED.Email_Id,
+            INSERTED.Phone,
+            INSERTED.Address,
+            INSERTED.CreatedDate
+        WHERE UserId = @UserId";
+
+            var deletedUser = await _db.QueryFirstOrDefaultAsync<UserListResponse>(sql, new { UserId = id });
+
+            return deletedUser;
+        }
+    }
+  
+}

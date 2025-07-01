@@ -22,5 +22,5 @@ namespace MyFlipKart.DTOS.Request
         public string? FilterBy { get; set; }
         public string? FilterValue { get; set; }
     }
-
+   
 }

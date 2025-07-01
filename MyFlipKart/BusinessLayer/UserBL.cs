@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace MyFlipKart.BusinessLayer
 {
-    public class UserBL: IUserBL
+    public class UserBL : IUserBL
     {
         private readonly IUserRL _user;
         public UserBL(IUserRL user)
@@ -14,7 +14,7 @@ namespace MyFlipKart.BusinessLayer
             _user = user;
         }
 
-      
+
         public async Task<UserRegResponse> UserRegistation(UserRegRequest request)
         {
             var result = await _user.RegisterUser(JsonConvert.SerializeObject(request));
@@ -24,7 +24,7 @@ namespace MyFlipKart.BusinessLayer
         public async Task<LoginResponse> ValidateUser(LoginRequest request)
         {
             var user = new LoginResponse();
-            bool result  = await _user.ValidateUser(request);
+            bool result = await _user.ValidateUser(request);
             if (result != null)
             {
                 user.Status = "Success";
@@ -41,10 +41,20 @@ namespace MyFlipKart.BusinessLayer
             return user;
         }
 
-        public Task<List<UserListResponse>?> FetchUserList(UserListRequest Request )
+        public Task<List<UserListResponse>?> FetchUserList(UserListRequest Request)
         {
             return _user.FetchUserList(Request);
         }
+        public async Task<UserListResponse> FetchUserDetails(int id)
+        {
+            return await _user.FetchUserDetealis(id);
 
+
+        }
+
+        public async Task<UserListResponse?> DeleteUserById(int id)
+        {
+           return await _user.DeleteUser(id);
+        }
     }
 }
