@@ -85,9 +85,53 @@ namespace MyFlipKart.Controllers
 
                 throw ex;
             }
-            
-
         }
+
+        [HttpGet("GetUserDetails/{id}")]
+        public async Task<IActionResult> UserLisGetuserDetails(int id)
+        {
+            try
+            {
+                var response = await _userBL.FetchUserDetails(id);
+                return Ok(ApiResponse<UserListResponse>.Success(
+                    response
+                ));
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        [HttpDelete("delete_user/{id}")]
+        public async Task<IActionResult> DeleteUserById(int id)
+        {
+            try
+            {
+                var response = await _userBL.DeleteUserById(id);
+                if (response != null)
+                    return Ok(ApiResponse<UserListResponse>.Success(
+                        response, "User Deleted Success."
+                    ));
+                else
+                    return BadRequest(ApiResponse<LoginResponse>.Fail(
+                    "User Delete failed.",
+                    "LOGIN_FAILED",
+                    400
+                ));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
 
     }
 }
+
+
+

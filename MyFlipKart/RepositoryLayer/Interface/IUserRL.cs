@@ -8,5 +8,9 @@ namespace MyFlipKart.RepositoryLayer.Interface
         Task<string> RegisterUser(string Request);
         Task<bool> ValidateUser(LoginRequest request);
         Task<List<UserListResponse>?> FetchUserList(UserListRequest req);
+        Task<UserListResponse> FetchUserDetealis(int id );
+        Task<UserListResponse?> DeleteUser(int id);
+
+
     }
 }
